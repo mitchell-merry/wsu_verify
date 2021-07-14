@@ -1,10 +1,15 @@
+/*
+ * Created by Mitchell Merry (diggitydingdong) on 15/7/2021
+ */
+
 const Discord = require('discord.js');
 const client  = new Discord.Client();
+const discord = require('./discord');
+
 const Database = require('./database');
 const db = new Database(); 
-const config = require('./config');
 
-var ready = false;
+const config = require('./config');
 
 async function init()
 {
@@ -16,10 +21,13 @@ async function init()
     console.log("Ready in " + client.guilds.cache.size);
     console.log(client.guilds.cache.map(g => `${g.name} [${g.id}]`).join("\n"));
 
+    config.discord.client = client;
+
     const mysql = await db.connect();
     config.mysql.client = mysql;
 
-    ready = true
+    config.discord.ready = true;
+    console.log();
 }
 
 // Event listener for when the bot is ready
@@ -27,24 +35,6 @@ client.once('ready', init);
 
 client.login(config.discord.token);
 
-// Event Listener for messages.
-client.on('message', async message => {
-    if(message.author.bot || !ready) return; // Do not listen to commands if they are sent by a bot.
-  
-    let guild = await message.guild;
-    let channel = await message.channel;
-  
-  });
-  
-  // Event Listener for when reactions are added
-  client.on('messageReactionAdd', (reaction, user) => {
-    if(user.bot || !ready) return;
-  
-    
-  });
-  
-  // Event Listener for when reactions are removed
-  client.on('messageReactionRemove', (reaction, user) => {
-    if(user.bot || !ready) return;
-  
-  });
+client.on('message', discord.message);  
+client.on('messageReactionAdd', discord.messageReactionAdd);
+client.on('messageReactionRemove', discord.messageReactionRemove);

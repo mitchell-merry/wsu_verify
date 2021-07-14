@@ -1,3 +1,7 @@
+/*
+ * Created by Mitchell Merry (diggitydingdong) on 15/7/2021
+ */
+
 const {DataTypes} = require("sequelize");
 
 module.exports = (sequelize) => {

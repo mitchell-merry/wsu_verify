@@ -9,6 +9,7 @@
 		"babel": "^6.23.0",
 		"babel-cli": "^6.26.0",
 		"discord.js": "^12.5.3",
+		"minimist": "^1.2.5",
 		"mysql2": "^2.2.5",
 		"nodemailer": "^6.6.1",
 		"save": "^2.4.0",

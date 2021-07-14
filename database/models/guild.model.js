@@ -1,3 +1,7 @@
+/*
+ * Created by Mitchell Merry (diggitydingdong) on 15/7/2021
+ */
+
 const {DataTypes} = require("sequelize");
 
 module.exports = (sequelize) => {
@@ -5,7 +9,7 @@ module.exports = (sequelize) => {
         guild_id: {
             field: "guild_id",
             primaryKey: true,
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
             autoIncrement: false,
         },
@@ -15,7 +19,7 @@ module.exports = (sequelize) => {
         },
         guild_unhide_id: {
             field: "guild_unhide_id",
-            type: DataTypes.INTEGER
+            type: DataTypes.STRING
         },
     });
 };
