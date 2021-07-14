@@ -1,5 +1,7 @@
 const pkg = require("../package.json");
-var auth = require('./auth.json'); // sensitive info - a json file with the properties below (auth.*)
+// sensitive info / specific to our needs - a json file with the following props:
+// token, adminID, emailaddr, emailpass, host, port, database, dbuser, dbpass
+var auth = require('./auth.json'); 
 
 module.exports = {
     discord: {
@@ -10,18 +12,19 @@ module.exports = {
         adminID: auth.adminID,
     },
     email: {
-        user: auth.user,
-        pass: auth.pass,
+        address: auth.emailaddr,
+        password: auth.emailpass,
     },
     mysql: {
         options: {
             host: auth.host,
-            port: auth.post,
+            port: auth.port,
             database: auth.database,
             dialect: "mysql",
             username: auth.dbuser,
             password: auth.dbpass,
         },
         client: null,
+        force: true,
     }
 }

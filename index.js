@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client  = new Discord.Client();
-const Database = require('./db.js');
+const Database = require('./database');
 const db = new Database(); 
 const config = require('./config');
 
@@ -16,8 +16,8 @@ async function init()
     console.log("Ready in " + client.guilds.cache.size);
     console.log(client.guilds.cache.map(g => `${g.name} [${g.id}]`).join("\n"));
 
-    const sequelize = await db.connect();
-    config.mysql.client = sequelize;
+    const mysql = await db.connect();
+    config.mysql.client = mysql;
 
     ready = true
 }
