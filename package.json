@@ -1,0 +1,19 @@
+{
+	"name": "wsu-verify",
+	"version": "0.0.1",
+	"description": "",
+	"main": "index.js",
+	"author": "diggitydingdong",
+	"dependencies": {
+		"-": "0.0.1",
+		"babel": "^6.23.0",
+		"babel-cli": "^6.26.0",
+		"discord.js": "^12.5.3",
+		"nodemailer": "^6.6.1",
+		"save": "^2.4.0",
+		"sequelize": "^6.6.2"
+	},
+	"devDependencies": {
+		"sqlite3": "^5.0.2"
+	}
+}
