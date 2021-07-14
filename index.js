@@ -1,31 +1,31 @@
 const Discord = require('discord.js');
 const client  = new Discord.Client();
+const Database = require('./db.js');
+const db = new Database(); 
+const config = require('./config');
 
-var auth = require('./auth.json'); //  Contains the authorisation token needed for connection.
-var info = require('./info.json'); // Info like prefix and such
-var ready = false
+var ready = false;
 
 async function init()
 {
     // Set the activity to whatever specified.
-    await client.user.setActivity("");
+    await client.user.setActivity(config.discord.activity);
     
     // Log all the guilds (servers) and their id's that the bot is located in.
-    helper.guildList = client.guilds.cache
+    config.discord.guildList = client.guilds.cache;
     console.log("Ready in " + client.guilds.cache.size);
     console.log(client.guilds.cache.map(g => `${g.name} [${g.id}]`).join("\n"));
-    // client.guilds.cache.forEach(guild => {
-    //     a(guild);
-    //       // Outputs the guild name + the invite URL
-    //   });
+
+    const sequelize = await db.connect();
+    config.mysql.client = sequelize;
 
     ready = true
 }
 
 // Event listener for when the bot is ready
-client.once('ready', init)
+client.once('ready', init);
 
-client.login(auth.token);
+client.login(config.discord.token);
 
 // Event Listener for messages.
 client.on('message', async message => {
