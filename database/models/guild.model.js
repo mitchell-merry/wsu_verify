@@ -38,12 +38,6 @@ class Guild extends Model {
         const matches = await this.findAll({ where: { guild_id: id } });
         return matches.length != 0;
     }
-
-    // static async getInGuild(id) {
-    //     const g = await this.models.Guild.findByPk(id);
-    //     console.log(g);
-    //     return await g.getCategorySets();
-    // }
 }
 
 module.exports = Guild;
