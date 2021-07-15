@@ -13,9 +13,9 @@ module.exports = (sequelize) => {
             allowNull: false,
             autoIncrement: false,
         },
-        role_channel_name: {
-            field: "role_channel_name",
-            type: DataTypes.STRING
-        },
-    });
+        // role_channel_name: {
+        //     field: "role_channel_name",
+        //     type: DataTypes.STRING
+        // },
+    });//, { underscored: true });
 };

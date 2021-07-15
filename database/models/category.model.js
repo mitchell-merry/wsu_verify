@@ -17,5 +17,5 @@ module.exports = (sequelize) => {
             field: "category_position",
             type: DataTypes.INTEGER
         },
-    });
+    });//, { underscored: true });
 };

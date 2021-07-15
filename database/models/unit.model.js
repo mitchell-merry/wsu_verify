@@ -21,5 +21,5 @@ module.exports = (sequelize) => {
             field: "channel_id",
             type: DataTypes.STRING,
         }
-    });
+    });//, { underscored: true });
 };

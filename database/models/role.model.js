@@ -17,5 +17,5 @@ module.exports = (sequelize) => {
             field: "role_emote",
             type: DataTypes.STRING
         },
-    });
+    });//, { underscored: true });
 };

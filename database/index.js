@@ -44,8 +44,9 @@ class Database {
         const { guild, category_set, category, role_channel, role_menu, role, unit } = sequelize.models;
 
         // Define associations here
-        guild.hasMany(category_set);//, { as: "guild_id" });
-
+        guild.hasMany(category_set, { as: "CategorySets" });//, { foriegnKey: "guild_id" });
+        category_set.belongsTo(guild);//, { foriegnKey: "guild_id" });
+        
         category_set.hasMany(category);//, { as: "category_set_id" });
 
         guild.hasMany(role_channel);//, { as: "guild_id" });
@@ -56,6 +57,34 @@ class Database {
 
         category_set.hasMany(unit);//, { as: "category_set_id" });
         unit.belongsTo(role);//, { as: "role_id" }); // this is not defining correctly, at least i think, it's doing 1:m not 1:1
+        const models = sequelize.models;
+        for (let model of Object.keys(sequelize.models)) {
+            if(!models[model].name)
+                continue;
+
+            console.log("\n\n----------------------------------\n", 
+            models[model].name, 
+            "\n----------------------------------");
+
+            console.log("\nAttributes");
+            for (let attr of Object.keys(models[model].attributes)) {
+                console.log(models[model].name + '.' + attr);
+            }
+
+            console.log("\nAssociations");
+            for (let assoc of Object.keys(models[model].associations)) {
+                for (let accessor of Object.keys(models[model].associations[assoc].accessors)) {
+                console.log(models[model].name + '.' + models[model].associations[assoc].accessors[accessor]+'()');
+                }
+            }
+
+            console.log("\nCommon");
+            for (let func of Object.keys(models[model].Instance.super_.prototype)) {
+                if(func === 'constructor' || func === 'sequelize')
+                continue;
+                console.log(models[model].name + '.' + func+'()');
+            }
+        }
 
         sequelize.sync({force: config.mysql.force});
     }

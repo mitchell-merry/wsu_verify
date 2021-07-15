@@ -17,5 +17,5 @@ module.exports = (sequelize) => {
             field: "category_set_name",
             type: DataTypes.STRING
         },
-    });
+    });//, { underscored: true });
 };

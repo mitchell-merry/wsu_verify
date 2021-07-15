@@ -1,0 +1,27 @@
+{
+    "guild": {
+        "init": {
+            "desc": "Initalises the given guild with the bot if it hasn't already been.",
+            "options": {
+                "--unhide": "Specify the role ID of the \"Unhide\" role."
+            }
+        },
+        "isInit": {
+            "desc": "Checks if the given guild has been initialised.",
+            "options": {
+                "--id": "The ID of the server to check."
+            }
+        }
+    },
+    "cset": {
+        "create": {
+            "desc": "Create a category set with the given name."
+        },
+        "list": {
+            "desc": "Lists all the category sets in the guild.",
+            "options": {
+                "-a": "Lists all category sets in every guild."
+            }
+        }
+    }
+}

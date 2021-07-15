@@ -13,13 +13,13 @@ module.exports = (sequelize) => {
             allowNull: false,
             autoIncrement: false,
         },
-        guild_name: {
-            field: "guild_name",
-            type: DataTypes.STRING
-        },
+        // guild_name: {
+        //     field: "guild_name",
+        //     type: DataTypes.STRING
+        // },
         guild_unhide_id: {
             field: "guild_unhide_id",
             type: DataTypes.STRING
         },
-    });
+    });//, { underscored: true });
 };

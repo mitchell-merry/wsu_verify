@@ -21,5 +21,5 @@ module.exports = (sequelize) => {
             field: "role_head_id",
             type: DataTypes.STRING,
         }
-    });
+    });//, { underscored: true });
 };
