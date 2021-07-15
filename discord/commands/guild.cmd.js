@@ -5,12 +5,12 @@
 const config = require('../../config');
 const discord_helper = require('./../discord_helper');
 var parseArgs = require('minimist');
-const guild = require('../../database/drivers/guild');
 
 // TODO: Clean as we expand, good enough for now
 const handleCommand = async (message) => {
     var argv = parseArgs(discord_helper.trimPrefix(message.content).split(' '), {string: "unhide"});
     // const { guild } = config.mysql.client.models;
+    const { Guild } = config.mysql.client.models;
 
     if(!argv["_"][1]) {
 
@@ -28,8 +28,7 @@ const handleCommand = async (message) => {
             }
         }
 
-        // const guildMatches = await guild.findAll({ where: { guild_id: message.guild.id } });
-        let exists = await guild.exists(message.guild.id);
+        let exists = await Guild.exists(message.guild.id);
         if(!exists) {
             console.log("Inserting guild into database...");
             console.log("Guild ID   : " + message.guild.id);
@@ -40,15 +39,12 @@ const handleCommand = async (message) => {
 
             let newGuild = { 
                 guild_id: message.guild.id, 
-                // guild_name: message.guild.name 
                 guild_unhide_id: (unhideRole ? argv["unhide"] : null)
             };
-            // if(unhideRole) newGuild.guild_unhide_id = argv["unhide"];
 
-            guild.create(newGuild);
+            Guild.create(newGuild);
 
             message.channel.send("Successful! Continuing...")
-            console.log();
         } else {
             message.channel.send("Guild already exists.");
         }
@@ -58,7 +54,7 @@ const handleCommand = async (message) => {
             id = argv["id"];
         }
         
-        let exists = await guild.exists(id);
+        let exists = await Guild.exists(id);
         let o = exists ? "" : " not";
         message.channel.send(argv["id"] ? "The guild with that ID has" + o + " been initialised." : "This guild has" + o + " been initialised.");
     } else {
