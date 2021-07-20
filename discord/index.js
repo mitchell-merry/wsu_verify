@@ -6,14 +6,14 @@ const config = require('../config');
 const discord_helper = require('./discord_helper');
 const commands = {
     "guild": require("./commands/guild.cmd"),
-    "cset": require("./commands/cset.cmd")
+    "cset": require("./commands/cset.cmd"),
+    "unit": require("./commands/unit.cmd")
 };
 var parseArgs = require('minimist');
 
 // Event Listener for messages.
 const message = async (message) => {
     if(message.author.bot || !config.discord.ready) return; // Do not listen to commands if they are sent by a bot, or if initialisation isn't complete.
-  
 
     if(discord_helper.isCommand(message.content)) {
         if(message.author.id == config.discord.adminID) {
@@ -21,7 +21,7 @@ const message = async (message) => {
             var argv = parseArgs(discord_helper.trimPrefix(message.content).split(' '));
 
             if(commands && !commands.hasOwnProperty(argv["_"][0])) {
-                channel.send("Unrecognisable command '" + argv["_"] + "'.");
+                message.channel.send("Unrecognisable command '" + argv["_"] + "'.");
                 console.log(argv);
             } else {
                 await commands[argv["_"][0]].handleCommand(message);

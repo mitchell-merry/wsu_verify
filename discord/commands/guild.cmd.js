@@ -25,6 +25,7 @@ const handleCommand = async (message) => {
             } else {
                 console.error("Unhide role doesn't exist.");
                 message.channel.send("ERROR: Unhide role doesn't exist.");
+                return;
             }
         }
 

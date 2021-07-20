@@ -11,9 +11,9 @@ class CategorySet extends Model {
             category_set_id: {
                 field: "category_set_id",
                 primaryKey: true,
-                type: DataTypes.INTEGER,
+                type: DataTypes.STRING,
                 allowNull: false,
-                autoIncrement: true,
+                autoIncrement: false,
             },
             category_set_name: {
                 field: "category_set_name",
@@ -30,6 +30,7 @@ class CategorySet extends Model {
         this.models = models;
         this.belongsTo(models.Guild);
         this.hasMany(models.Category);
+        this.hasMany(models.Unit);
     }
 
     static async exists(id) {

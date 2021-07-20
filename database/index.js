@@ -5,7 +5,6 @@
 const Sequelize = require('sequelize');
 const config = require('../config');
 
-// https://github.com/sequelize/express-example borrowed structure from here
 const sync = async (sequelize) => {
     const models = {
         Guild: require('./models/guild.model').init(sequelize),
@@ -17,6 +16,7 @@ const sync = async (sequelize) => {
         Unit: require('./models/unit.model').init(sequelize),
     };
 
+    // code i found on stackoverflow to help me debug & write code
     Object.values(models)
         .filter(model => typeof model.associate === "function")
         .forEach(model => model.associate(models));
