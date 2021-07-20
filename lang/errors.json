@@ -1,0 +1,40 @@
+{
+    "undef_sc": {
+        "cons": "ERROR: Command returned undefined status code. Assuming OK. Please fix.\n"
+    },
+    "inval_cmd": {
+        "disc": "Unrecognised command."
+    },
+    "inval_perms": {
+        "disc": "You are not permitted to use this command.",
+        "cons": "Illegal attempt at command attempted."
+    },
+    "inval_guild_unhide": {
+        "disc": "Invalid Unhide role provided."
+    },
+    "inval_guild_exists": {
+        "disc": "Guild provided has already been initialised."
+    },
+    "inval_guild": {
+        "disc": "This guild has not been initialised."
+    },
+    "inval_cset_name": {
+        "disc": "Please specify a name."
+    },
+    "inval_cset_head": {
+        "disc": "Invalid category head ID."
+    },
+    "inval_cset_head_unspec": {
+        "disc": "Please specify a head category ID."
+    },
+    "inval_cset_head_used": {
+        "disc": "Category head already in use."
+    },
+    "inval_unit_msg_unspec": {
+        "disc": "Please specify a message ID."
+    },
+    "inval_unit_msg": {
+        "disc": "Invalid message ID."
+    }
+
+}
