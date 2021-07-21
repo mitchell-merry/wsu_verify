@@ -12,6 +12,9 @@
         "disc": "You are not permitted to use this command.",
         "cons": "Illegal attempt at command attempted."
     },
+    "inval_channel_perms": {
+        "cons": "Command attempted in non bot-channel."
+    },
     "inval_guild_unhide": {
         "disc": "Invalid Unhide role provided."
     },
@@ -20,6 +23,12 @@
     },
     "inval_guild": {
         "disc": "This guild has not been initialised."
+    },
+    "inval_bot_channel": {
+        "disc": "Invalid bot channel ID."
+    },
+    "inval_bot_channel_exists": {
+        "disc": "Specified bot channel already exists."
     },
     "inval_cset_name": {
         "disc": "Please specify a name."

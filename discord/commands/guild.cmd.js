@@ -7,7 +7,7 @@ const discord_helper = require('../discord_helper');
 var parseArgs = require('minimist');
 
 const handleInit = async (message, argv) => {
-    const { Guild } = config.mysql.client.models;
+    const { Guild, RoleToPermission } = config.mysql.client.models;
     if(RoleToPermission.userHasPermission(message.member)) return "inval_perms";
     
     let unhideRole = false;
@@ -18,7 +18,6 @@ const handleInit = async (message, argv) => {
 
     let exists = await Guild.exists(message.guild.id);
     if(exists) return "inval_guild_exists";
-    
 
     let newGuild = { 
         guild_id: message.guild.id, 
@@ -33,8 +32,7 @@ const handleInit = async (message, argv) => {
 
 const handleIsInit = async (message, argv) => {
     const { Guild, RoleToPermission } = config.mysql.client.models;
-
-    if(RoleToPermission.userHasPermission(message.member, "guild_isInit")) return "inval_perms";
+    if(!RoleToPermission.userHasPermission(message.member, "guild_isInit")) return "inval_perms";
     
     let id = message.guild.id;
     if(argv["id"]) id = argv["id"];
@@ -47,9 +45,29 @@ const handleIsInit = async (message, argv) => {
     return true;
 }
 
+const handleAddBotChannel = async (message, argv) => {
+    const { Guild, BotChannel, RoleToPermission } = config.mysql.client.models;
+
+    const G = await Guild.findByPk(message.guild.id);
+    if(G === null) return "inval_guild"; // If the guild exists in our database
+    if(!RoleToPermission.userHasPermission(message.member, "guild_addBotChannel")) return "inval_perms";
+    if(argv["_"].length < 3) return "not_enough_args";
+
+    const id = message.content.split(' ')[2];
+    const ch = await message.guild.channels.cache.get(id);
+    if(ch === undefined) return "inval_bot_channel";
+    const e = await BotChannel.exists(argv["_"][2]);
+    if(e) return "inval_bot_channel_exists";
+
+    G.createBotChannel({ bot_channel_id: ch.id });
+
+    return true;
+}
+
 const commands = {
     "init": handleInit,
     "isInit": handleIsInit,
+    "addBotChannel": handleAddBotChannel,
 };
 
 const handleCommand = async (message) => {

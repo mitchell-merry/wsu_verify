@@ -7,5 +7,6 @@
     "cset_create",
     "cset_list",
     "guild_isInit",
+    "guild_addBotChannel",
     "unit_create"
 ]

@@ -7,10 +7,11 @@ const discord_helper = require('./../discord_helper');
 var parseArgs = require('minimist');
 
 const handleCreate = async (message, argv) => {
-    const { Guild, CategorySet, RoleToPermission } = config.mysql.client.models;
+    const { Guild, BotChannel, CategorySet, RoleToPermission } = config.mysql.client.models;
 
     const G = await Guild.findByPk(message.guild.id);
 
+    if(!(await BotChannel.isValid(message.channel, message.guild))) return "inval_channel_perms";
     if(G === null) return "inval_guild"; // If the guild exists in our database
     if(RoleToPermission.userHasPermission(message.member, "cset_create")) return "inval_perms";
     if(!argv["n"]) return "inval_cset_name"; // If the name option has been set

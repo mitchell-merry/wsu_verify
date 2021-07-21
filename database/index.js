@@ -8,6 +8,7 @@ const config = require('../config');
 const sync = async (sequelize) => {
     const models = {
         Guild: require('./models/guild.model').init(sequelize),
+        BotChannel: require('./models/bot_channel.model').init(sequelize),
         CategorySet: require('./models/category_set.model').init(sequelize),
         Category: require('./models/category.model').init(sequelize),
         RoleChannel: require('./models/role_channel.model').init(sequelize),

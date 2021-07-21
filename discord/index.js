@@ -26,12 +26,10 @@ const message = async (message) => {
 
     // Ignore non-commands
     if(!discord_helper.isCommand(message.content)) return false;
-
-    // Check if user is ADMIN - primitive permission system. Update later
-    if(message.author.id !== config.discord.adminID) {
-        handleError(err["inval_perms"], message.channel);
-        return false;
-    }
+    
+    // bot channel
+    const { BotChannel } = config.mysql.client.models;
+    if(!(await BotChannel.isValid(message.channel, message.guild))) return "inval_channel_perms";
     
     // PARSE COMMAND - https://github.com/substack/minimist
     var argv = parseArgs(discord_helper.trimPrefix(message.content).split(' '));

@@ -32,6 +32,7 @@ class Guild extends Model {
     static associate(models) {
         this.hasMany(models.CategorySet);
         this.hasMany(models.RoleChannel);
+        this.hasMany(models.BotChannel);
     }
 
     static async exists(id) {

@@ -34,15 +34,17 @@ class RoleToPermission extends Model {
 
     }
 
-    static async userHasPermission(user, perm) {
+    static async userHasPermission(member, perm) {
         let rolesWithPerm = await RoleToPermission.findAll({ where: { permission: perm } });
         rolesWithPerm = rolesWithPerm.map(r => r.dataValues.role_id);
         
         for(const r of rolesWithPerm) {
-            if(user.roles.cache.has(r)) return true;
+            if(member.roles.cache.has(r)) return true;
         }
 
-        return message.member.permissions.has('ADMINISTRATOR');
+        console.log(member.guild.ownerID)
+        console.log(member.id)
+        return member.permissions.has('ADMINISTRATOR') || member.guild.ownerID === member.id;
     }
 }
 
