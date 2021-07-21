@@ -8,21 +8,40 @@ var parseArgs = require('minimist');
 
 const handleInit = async (message, argv) => {
     const { Guild, RoleToPermission } = config.mysql.client.models;
-    if(RoleToPermission.userHasPermission(message.member)) return "inval_perms";
-    
-    let unhideRole = false;
-    if(argv["unhide"]) {
-        unhideRole = message.guild.roles.cache.get(argv["unhide"]);
-        if(unhideRole === false) return "inval_guild_unhide";
-    }
+    if(!RoleToPermission.userHasPermission(message.member)) return "inval_perms";
 
     let exists = await Guild.exists(message.guild.id);
     if(exists) return "inval_guild_exists";
 
-    let newGuild = { 
-        guild_id: message.guild.id, 
-        guild_unhide_id: (unhideRole ? argv["unhide"] : null)
-    };
+    let newGuild = { guild_id: message.guild.id };
+    console.log(argv);
+    let unhideRole = false;
+    if(argv["unhide"]) {
+        unhideRole = message.guild.roles.cache.get(argv["unhide"]);
+        if(unhideRole === false) return "inval_guild_unhide";
+        newGuild.guild_unhide_id = argv["unhide"];
+    }
+    
+    let mute_cat = false;
+    if(argv["mute_cat"]) {
+        mute_cat = message.guild.channels.cache.get(argv["mute_cat"]);
+        if(mute_cat === false) return "inval_guild_mute_cat";
+        newGuild.guild_mute_cat_id = argv["mute_cat"];
+    }
+
+    let mute_cat_arch = false;
+    if(argv["mute_cat_arch"]) {
+        mute_cat_arch = message.guild.channels.cache.get(argv["mute_cat_arch"]);
+        if(mute_cat_arch === false) return "inval_guild_mute_cat_arch";
+        newGuild.guild_mute_cat_arch_id = argv["mute_cat_arch"];
+    }
+
+    let mute_role = false;
+    if(argv["mute_role"]) {
+        mute_role = message.guild.channels.cache.get(argv["mute_role"]);
+        if(mute_role === false) return "inval_guild_mute_role_arch";
+        newGuild.guild_mute_role_id = argv["mute_role"];
+    }
 
     Guild.create(newGuild);
 
@@ -71,7 +90,7 @@ const commands = {
 };
 
 const handleCommand = async (message) => {
-    var argv = parseArgs(discord_helper.trimPrefix(message.content).split(' '), {string: ["unhide", "id"]});
+    var argv = parseArgs(discord_helper.trimPrefix(message.content).split(' '), {string: ["unhide", "id", "mute_cat", "mute_cat_arch", "mute_role"]});
 
     if(!argv["_"][1] || !commands.hasOwnProperty(argv["_"][1])) return "inval_cmd";
     

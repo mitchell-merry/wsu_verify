@@ -14,12 +14,20 @@ class Guild extends Model {
                 allowNull: false,
                 autoIncrement: false,
             },
-            // guild_name: {
-            //     field: "guild_name",
-            //     type: DataTypes.STRING
-            // },
             guild_unhide_id: {
                 field: "guild_unhide_id",
+                type: DataTypes.STRING
+            },
+            guild_mute_cat_id: {
+                field: "guild_mute_cat_id",
+                type: DataTypes.STRING
+            },
+            guild_mute_cat_arch_id: {
+                field: "guild_mute_cat_arch_id",
+                type: DataTypes.STRING
+            },
+            guild_mute_role_id: {
+                field: "guild_mute_role_id",
                 type: DataTypes.STRING
             },
         },

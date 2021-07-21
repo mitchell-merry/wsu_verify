@@ -41,6 +41,8 @@ class BotChannel extends Model {
     static async isValid(channel, guild) {
         const { Guild } = config.mysql.client.models;
         const G = await Guild.findByPk(guild.id);
+        if(G === null) return true;
+
         const valids = (await G.getBotChannels()).map(bc => bc.dataValues.bot_channel_id);
         return valids.length == 0 || valids.includes(channel.id);
     }

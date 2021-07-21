@@ -53,5 +53,20 @@
     },
     "perm_inval_perm": {
         "disc": "Invalid permission given."
+    },
+    "sm_inval_user": {
+        "disc": "Invalid user ID."
+    },
+    "sm_inval_mute_cat": {
+        "disc": "Invalid mute category set."
+    },
+    "sm_inval_mute_cat_arch": {
+        "disc": "Invalid archive mute category set."
+    },
+    "sm_inval_mute_role": {
+        "disc": "Invalid mute role set."
+    },
+    "sm_inval_mute_channel": {
+        "disc": "Unable to find mute channel."
     }
 }
