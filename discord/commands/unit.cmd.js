@@ -7,6 +7,8 @@ const discord_helper = require('./../discord_helper');
 var parseArgs = require('minimist');
 
 const handleCreate = async (message, argv) => {
+    const { RoleToPermission } = config.mysql.client.models;
+    if(RoleToPermission.userHasPermission(message.member, "unit_create")) return "inval_perms";
     if(!argv["m"]) return "inval_unit_msg_unspec";
 
     const msg = await message.channel.messages.fetch(argv["m"]);

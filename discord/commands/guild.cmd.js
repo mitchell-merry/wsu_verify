@@ -3,13 +3,14 @@
  */
 
 const config = require('../../config');
-const discord_helper = require('./../discord_helper');
+const discord_helper = require('../discord_helper');
 var parseArgs = require('minimist');
 
 const handleInit = async (message, argv) => {
     const { Guild } = config.mysql.client.models;
-    let unhideRole = false;
+    if(RoleToPermission.userHasPermission(message.member)) return "inval_perms";
     
+    let unhideRole = false;
     if(argv["unhide"]) {
         unhideRole = message.guild.roles.cache.get(argv["unhide"]);
         if(unhideRole === false) return "inval_guild_unhide";
@@ -17,6 +18,7 @@ const handleInit = async (message, argv) => {
 
     let exists = await Guild.exists(message.guild.id);
     if(exists) return "inval_guild_exists";
+    
 
     let newGuild = { 
         guild_id: message.guild.id, 
@@ -30,7 +32,9 @@ const handleInit = async (message, argv) => {
 }
 
 const handleIsInit = async (message, argv) => {
-    const { Guild } = config.mysql.client.models;
+    const { Guild, RoleToPermission } = config.mysql.client.models;
+
+    if(RoleToPermission.userHasPermission(message.member, "guild_isInit")) return "inval_perms";
     
     let id = message.guild.id;
     if(argv["id"]) id = argv["id"];

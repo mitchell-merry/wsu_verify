@@ -12,6 +12,7 @@ const sync = async (sequelize) => {
         Category: require('./models/category.model').init(sequelize),
         RoleChannel: require('./models/role_channel.model').init(sequelize),
         RoleMenu: require('./models/role_menu.model').init(sequelize),
+        RoleToPermission: require('./models/role_to_permission.model').init(sequelize),
         Role: require('./models/role.model').init(sequelize),
         Unit: require('./models/unit.model').init(sequelize),
     };

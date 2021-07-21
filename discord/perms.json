@@ -1,0 +1,11 @@
+[
+    "*",
+    "perms",
+    "mute",
+    "ban",
+    "strip",
+    "cset_create",
+    "cset_list",
+    "guild_isInit",
+    "unit_create"
+]

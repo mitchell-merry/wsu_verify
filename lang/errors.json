@@ -2,6 +2,9 @@
     "undef_sc": {
         "cons": "ERROR: Command returned undefined status code. Assuming OK. Please fix.\n"
     },
+    "not_enough_args": {
+        "disc": "Not enough arguments specified."
+    },
     "inval_cmd": {
         "disc": "Unrecognised command."
     },
@@ -35,6 +38,11 @@
     },
     "inval_unit_msg": {
         "disc": "Invalid message ID."
+    },
+    "perm_inval_role": {
+        "disc": "That role doesn't exist."
+    },
+    "perm_inval_perm": {
+        "disc": "Invalid permission given."
     }
-
 }

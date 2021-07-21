@@ -8,7 +8,8 @@ const commands = {
     "guild": require("./commands/guild.cmd"),
     "cset": require("./commands/cset.cmd"),
     "unit": require("./commands/unit.cmd"),
-    "sm": require("./commands/sm.cmd")
+    "sm": require("./commands/sm.cmd"),
+    "perm": require("./commands/perm.cmd"),
 };
 var parseArgs = require('minimist');
 const err = require('../lang/errors.json');

@@ -28,6 +28,7 @@ class Role extends Model {
     static associate(models) {
         this.belongsTo(models.RoleMenu);
         this.hasOne(models.Unit);
+        // this.hasMany(models.RoleToPermission);
     }
 }
 

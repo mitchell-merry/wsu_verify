@@ -7,22 +7,30 @@ const discord_helper = require('./../discord_helper');
 var parseArgs = require('minimist');
 
 const handleMute = async (message, argv) => {
-
+    const { RoleToPermission } = config.mysql.client.models;
+    if(RoleToPermission.userHasPermission(message.member, "mute")) return "inval_perms";
+    
     return true;
 }
 
 const handleUnmute = async (message, argv) => {
-
+    const { RoleToPermission } = config.mysql.client.models;
+    if(RoleToPermission.userHasPermission(message.member, "mute")) return "inval_perms";
+    
     return true;
 }
 
 const handleBan = async (message, argv) => {
-
+    const { RoleToPermission } = config.mysql.client.models;
+    if(RoleToPermission.userHasPermission(message.member, "ban")) return "inval_perms";
+    
     return true;
 }
 
 const handleStrip = async (message, argv) => {
-
+    const { RoleToPermission } = config.mysql.client.models;
+    if(RoleToPermission.userHasPermission(message.member, "strip")) return "inval_perms";
+    
     return true;
 }
 
