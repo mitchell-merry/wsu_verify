@@ -7,8 +7,8 @@ const discord_helper = require('../discord_helper');
 var parseArgs = require('minimist');
 
 const handleInit = async (message, argv) => {
-    const { Guild, RoleToPermission } = config.mysql.client.models;
-    if(!RoleToPermission.userHasPermission(message.member)) return "inval_perms";
+    const { Guild, Permission } = config.mysql.client.models;
+    if(!Permission.userHasPermission(message.member)) return "inval_perms";
 
     let exists = await Guild.exists(message.guild.id);
     if(exists) return "inval_guild_exists";
@@ -50,8 +50,8 @@ const handleInit = async (message, argv) => {
 }
 
 const handleIsInit = async (message, argv) => {
-    const { Guild, RoleToPermission } = config.mysql.client.models;
-    if(!RoleToPermission.userHasPermission(message.member, "guild_isInit")) return "inval_perms";
+    const { Guild, Permission } = config.mysql.client.models;
+    if(!Permission.userHasPermission(message.member, "guild_isInit")) return "inval_perms";
     
     let id = message.guild.id;
     if(argv["id"]) id = argv["id"];
@@ -65,11 +65,11 @@ const handleIsInit = async (message, argv) => {
 }
 
 const handleAddBotChannel = async (message, argv) => {
-    const { Guild, BotChannel, RoleToPermission } = config.mysql.client.models;
+    const { Guild, BotChannel, Permission } = config.mysql.client.models;
 
     const G = await Guild.findByPk(message.guild.id);
     if(G === null) return "inval_guild"; // If the guild exists in our database
-    if(!RoleToPermission.userHasPermission(message.member, "guild_addBotChannel")) return "inval_perms";
+    if(!Permission.userHasPermission(message.member, "guild_addBotChannel")) return "inval_perms";
     if(argv["_"].length < 3) return "not_enough_args";
 
     const id = message.content.split(' ')[2];

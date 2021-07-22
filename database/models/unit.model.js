@@ -30,8 +30,8 @@ class Unit extends Model {
     }
 
     static associate(models) {
-        this.belongsTo(models.CategorySet);
-        this.belongsTo(models.Role);
+        this.belongsTo(models.CategorySet, { foreignKey: 'category_set_id' });
+        this.belongsTo(models.Role, { foreignKey: 'role_id' });
     }
 }
 

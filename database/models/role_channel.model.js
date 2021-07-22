@@ -26,8 +26,8 @@ class RoleChannel extends Model {
     }
 
     static associate(models) {
-        this.belongsTo(models.Guild);
-        this.hasMany(models.RoleMenu);
+        this.belongsTo(models.Guild, { foreignKey: 'guild_id' });
+        this.hasMany(models.RoleMenu, { foreignKey: 'role_channel_id' });
     }
 }
 

@@ -32,6 +32,6 @@ module.exports = {
             logging: false,
         },
         client: null,
-        force: false,
+        force: true,
     },
 }

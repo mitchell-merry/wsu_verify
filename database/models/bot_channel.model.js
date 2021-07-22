@@ -15,13 +15,6 @@ class BotChannel extends Model {
                 allowNull: false,
                 autoIncrement: false,
             },
-            guild_id: {
-                field: "guild_id",
-                primaryKey: true,
-                type: DataTypes.STRING,
-                allowNull: false,
-                autoIncrement: false,
-            },
         },
         {
             tableName: "bot_channel",
@@ -30,7 +23,7 @@ class BotChannel extends Model {
     }
 
     static associate(models) {
-        this.belongsTo(models.Guild);
+        this.belongsTo(models.Guild, { foreignKey: 'guild_id' });
     }
 
     static async exists(id) {

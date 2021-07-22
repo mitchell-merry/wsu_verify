@@ -26,8 +26,8 @@ class Role extends Model {
     }
 
     static associate(models) {
-        this.belongsTo(models.RoleMenu);
-        this.hasOne(models.Unit);
+        this.belongsTo(models.RoleMenu, { foreignKey: 'role_menu_id' });
+        this.hasOne(models.Unit, { foreignKey: 'role_id' });
         // this.hasMany(models.RoleToPermission);
     }
 }

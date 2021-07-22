@@ -7,13 +7,13 @@ const discord_helper = require('./../discord_helper');
 var parseArgs = require('minimist');
 
 const handleCreate = async (message, argv) => {
-    const { Guild, BotChannel, CategorySet, RoleToPermission } = config.mysql.client.models;
+    const { Guild, BotChannel, CategorySet, Permission } = config.mysql.client.models;
 
     const G = await Guild.findByPk(message.guild.id);
 
     if(!(await BotChannel.isValid(message.channel, message.guild))) return "inval_channel_perms";
     if(G === null) return "inval_guild"; // If the guild exists in our database
-    if(RoleToPermission.userHasPermission(message.member, "cset_create")) return "inval_perms";
+    if(Permission.userHasPermission(message.member, "cset_create")) return "inval_perms";
     if(!argv["n"]) return "inval_cset_name"; // If the name option has been set
     if(!argv["head"]) return "inval_cset_head_unspec"; // If the head option has been set
     
@@ -37,11 +37,11 @@ const handleCreate = async (message, argv) => {
 }
 
 const handleList = async (message, argv) => {
-    const { Guild, RoleToPermission } = config.mysql.client.models;
+    const { Guild, Permission } = config.mysql.client.models;
     
     const G = await Guild.findByPk(message.guild.id);
     if(G === null) return "inval_guild"; // If the guild exists in our database
-    if(RoleToPermission.userHasPermission(message.member, "cset_list")) return "inval_perms";
+    if(Permission.userHasPermission(message.member, "cset_list")) return "inval_perms";
     
     const category_sets = await G.getCategorySets(); // Get the category sets under the guild
         

@@ -13,7 +13,7 @@ const sync = async (sequelize) => {
         Category: require('./models/category.model').init(sequelize),
         RoleChannel: require('./models/role_channel.model').init(sequelize),
         RoleMenu: require('./models/role_menu.model').init(sequelize),
-        RoleToPermission: require('./models/role_to_permission.model').init(sequelize),
+        Permission: require('./models/permission.model').init(sequelize),
         Role: require('./models/role.model').init(sequelize),
         Unit: require('./models/unit.model').init(sequelize),
     };
@@ -42,23 +42,6 @@ const sync = async (sequelize) => {
               }
             }
           }
-
-    // const { guild, category_set, category, role_channel, role_menu, role, unit } = sequelize.models;
-
-    // // Define associations here
-    // guild.hasMany(category_set, { as: "CategorySets" });//, { foriegnKey: "guild_id" });
-    // category_set.belongsTo(guild);//, { foriegnKey: "guild_id" });
-        
-    // category_set.hasMany(category);//, { as: "category_set_id" });
-
-    // guild.hasMany(role_channel);//, { as: "guild_id" });
-
-    // role_channel.hasMany(role_menu);//, { as: "role_channel_id" });
-
-    // role_menu.hasMany(role);//, { as: "role_menu_id" });
-
-    // category_set.hasMany(unit);//, { as: "category_set_id" });
-    // unit.belongsTo(role);//, { as: "role_id" }); // this is not defining correctly, at least i think, it's doing 1:m not 1:1
     
     sequelize.sync({force: config.mysql.force});
 }

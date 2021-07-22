@@ -7,8 +7,8 @@ const discord_helper = require('./../discord_helper');
 var parseArgs = require('minimist');
 
 const handleMute = async (message, argv) => {
-    const { Guild, RoleToPermission } = config.mysql.client.models;
-    if(!RoleToPermission.userHasPermission(message.member, "mute")) return "inval_perms";
+    const { Guild, Permission } = config.mysql.client.models;
+    if(!Permission.userHasPermission(message.member, "mute")) return "inval_perms";
     
     const G = await Guild.findByPk(message.guild.id);
     if(G === null) return "inval_guild"; // If the guild exists in our database
@@ -37,7 +37,7 @@ const handleMute = async (message, argv) => {
         }
     ];
 
-    let roles_with_perms = await RoleToPermission.findAll({where: {permission: "mute"}});
+    let roles_with_perms = await Permission.findAll({where: {permission: "mute"}});
     // Let all the mod roles view the muted channel
     for(const r of roles_with_perms) {
         permissionOverwrites.push({
@@ -65,9 +65,9 @@ const handleMute = async (message, argv) => {
 };
 
 const handleUnmuteBan = async (message, argv) => {
-    const { Guild, RoleToPermission } = config.mysql.client.models;
-    if(argv[1] === "unmute" && !RoleToPermission.userHasPermission(message.member, "mute")) return "inval_perms";
-    else if(argv[1] === "ban" && !RoleToPermission.userHasPermission(message.member, "ban")) return "inval_perms";
+    const { Guild, Permission } = config.mysql.client.models;
+    if(argv[1] === "unmute" && !Permission.userHasPermission(message.member, "mute")) return "inval_perms";
+    else if(argv[1] === "ban" && !Permission.userHasPermission(message.member, "ban")) return "inval_perms";
     
     const G = await Guild.findByPk(message.guild.id);
     if(G === null) return "inval_guild"; // If the guild exists in our database
@@ -104,8 +104,8 @@ const handleUnmuteBan = async (message, argv) => {
 };
 
 const handleStrip = async (message, argv) => {
-    const { RoleToPermission } = config.mysql.client.models;
-    if(!RoleToPermission.userHasPermission(message.member, "strip")) return "inval_perms";
+    const { Permission } = config.mysql.client.models;
+    if(!Permission.userHasPermission(message.member, "strip")) return "inval_perms";
     
     if(argv.length < 3) return "not_enough_args";
     const user = await message.guild.members.fetch(argv[2]);

@@ -30,8 +30,8 @@ class RoleMenu extends Model {
     }
 
     static associate(models) {
-        this.hasMany(models.Role);
-        this.belongsTo(models.RoleChannel);
+        this.hasMany(models.Role, { foreignKey: 'role_menu_id' });
+        this.belongsTo(models.RoleChannel, { foreignKey: 'role_channel_id' });
     }
 }
 

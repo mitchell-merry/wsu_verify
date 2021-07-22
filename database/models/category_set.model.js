@@ -28,9 +28,9 @@ class CategorySet extends Model {
 
     static associate(models) {
         this.models = models;
-        this.belongsTo(models.Guild);
-        this.hasMany(models.Category);
-        this.hasMany(models.Unit);
+        this.belongsTo(models.Guild, { foreignKey: 'guild_id' });
+        this.hasMany(models.Category, { foreignKey: 'category_set_id' });
+        this.hasMany(models.Unit, { foreignKey: 'category_set_id' });
     }
 
     static async exists(id) {

@@ -38,9 +38,9 @@ class Guild extends Model {
     }
 
     static associate(models) {
-        this.hasMany(models.CategorySet);
-        this.hasMany(models.RoleChannel);
-        this.hasMany(models.BotChannel);
+        this.hasMany(models.CategorySet, { foreignKey: 'guild_id' });
+        this.hasMany(models.RoleChannel, { foreignKey: 'guild_id' });
+        this.hasMany(models.BotChannel, { foreignKey: 'guild_id' });
     }
 
     static async exists(id) {

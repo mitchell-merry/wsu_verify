@@ -8,13 +8,13 @@ var parseArgs = require('minimist');
 const perms = require('../perms.json');
 
 const handleAdd = async (message, argv) => {
-    const { Guild, RoleToPermission } = config.mysql.client.models;
+    const { Guild, Permission } = config.mysql.client.models;
 
     const exists = await Guild.exists(message.guild.id);
     if(!exists) return "inval_guild";
     if(argv["_"].length < 4) return "not_enough_args";
 
-    if(RoleToPermission.userHasPermission(message.member, "perms")) return "inval_perms";
+    if(Permission.userHasPermission(message.member, "perms")) return "inval_perms";
 
     const id = message.content.split(' ')[2];
     const role = await message.guild.roles.cache.get(id);
@@ -24,11 +24,10 @@ const handleAdd = async (message, argv) => {
     const rtps = []
     for(const p of ps) {
         if(!perms.includes(p)) return "perm_inval_perm";
-        rtps.push({ role_id: argv["_"][2], permission: p });
+        rtps.push({ role_id: argv["_"][2], permission_name: p });
     };
 
-    RoleToPermission.bulkCreate(rtps);
-    message.channel.send("Permissions given.");
+    Permission.bulkCreate(rtps).then(() => message.channel.send("Permissions given."));
     return true;
 }
 

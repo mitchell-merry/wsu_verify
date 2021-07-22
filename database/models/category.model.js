@@ -7,7 +7,7 @@ const { DataTypes, Model } = require("sequelize");
 class Category extends Model {
     static init(sequelize) {
         return super.init({
-            category_set_id: {
+            category_id: {
                 field: "category_id",
                 primaryKey: true,
                 type: DataTypes.STRING,
@@ -26,7 +26,7 @@ class Category extends Model {
     }
 
     static associate(models) {
-        this.belongsTo(models.CategorySet);
+        this.belongsTo(models.CategorySet, { foreignKey: 'category_set_id' });
 
     }
 }

@@ -5,7 +5,7 @@
 const config = require('../../config');
 const { DataTypes, Model } = require("sequelize");
 
-class RoleToPermission extends Model {
+class Permission extends Model {
     static init(sequelize) {
         return super.init({
             role_id: {
@@ -15,8 +15,8 @@ class RoleToPermission extends Model {
                 allowNull: false,
                 autoIncrement: false,
             },
-            permission: {
-                field: "permission",
+            permission_name: {
+                field: "permission_name",
                 primaryKey: true,
                 type: DataTypes.STRING,
                 allowNull: false,
@@ -24,7 +24,7 @@ class RoleToPermission extends Model {
             },
         },
         {
-            tableName: "role_to_permission",
+            tableName: "permission",
             sequelize
         });
     }
@@ -35,7 +35,7 @@ class RoleToPermission extends Model {
     }
 
     static async userHasPermission(member, perm="") {
-        let rolesWithPerm = await RoleToPermission.findAll({ where: { permission: perm } });
+        let rolesWithPerm = await this.findAll({ where: { permission_name: perm } });
         rolesWithPerm = rolesWithPerm.map(r => r.dataValues.role_id);
         
         for(const r of rolesWithPerm) {
@@ -46,4 +46,4 @@ class RoleToPermission extends Model {
     }
 }
 
-module.exports = RoleToPermission;
+module.exports = Permission;
