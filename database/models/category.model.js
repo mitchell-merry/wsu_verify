@@ -20,7 +20,7 @@ class Category extends Model {
             },
         },
         {
-            tableName: "categories",
+            tableName: "category",
             sequelize
         });
     }

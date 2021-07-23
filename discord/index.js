@@ -10,6 +10,7 @@ const commands = {
     "unit": require("./commands/unit.cmd"),
     "sm": require("./commands/sm.cmd"),
     "perm": require("./commands/perm.cmd"),
+    "identity": require("./commands/identity.cmd"),
 };
 var parseArgs = require('minimist');
 const err = require('../lang/errors.json');

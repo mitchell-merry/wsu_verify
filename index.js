@@ -5,7 +5,12 @@
 const PORT = 3001;
 
 const Discord = require('discord.js');
-const client  = new Discord.Client();
+const { Intents, Client } = Discord;
+const intents = new Intents([
+    Intents.NON_PRIVILEGED, // include all non-privileged intents, would be better to specify which ones you actually need
+    "GUILD_MEMBERS", // lets you request guild members (i.e. fixes the issue)
+]);
+const client  = new Client({ ws: { intents } });
 const express = require("express");
 const app = express();
 

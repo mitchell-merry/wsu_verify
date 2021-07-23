@@ -1,4 +1,8 @@
 {
+    "unk_err": {
+        "disc": "Unknown error encountered. Contact a bot admin.",
+        "cons": "UNKNOWN ERROR!"
+    },
     "undef_sc": {
         "cons": "ERROR: Command returned undefined status code. Assuming OK. Please fix.\n"
     },
@@ -54,7 +58,7 @@
     "perm_inval_perm": {
         "disc": "Invalid permission given."
     },
-    "sm_inval_user": {
+    "inval_user": {
         "disc": "Invalid user ID."
     },
     "sm_inval_mute_cat": {
@@ -68,5 +72,11 @@
     },
     "sm_inval_mute_channel": {
         "disc": "Unable to find mute channel."
+    },
+    "inval_identity": {
+        "disc": "Invalid identity ID."
+    },
+    "inval_identity_set": {
+        "disc": "This user already has an associated ID."
     }
 }

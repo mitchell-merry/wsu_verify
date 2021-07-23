@@ -20,7 +20,7 @@ class RoleChannel extends Model {
             // },
         },
         {
-            tableName: "role_channels",
+            tableName: "role_channel",
             sequelize
         });
     }

@@ -20,6 +20,7 @@ module.exports = {
     email: {
         address: auth.emailaddr,
         password: auth.emailpass,
+        transporter: undefined,
     },
     mysql: {
         options: {
@@ -32,6 +33,7 @@ module.exports = {
             logging: false,
         },
         client: null,
-        force: true,
+        force: false,
     },
+    helper: require('./helper')
 }

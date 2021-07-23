@@ -20,7 +20,7 @@ class Role extends Model {
             },
         },
         {
-            tableName: "roles",
+            tableName: "role",
             sequelize
         });
     }

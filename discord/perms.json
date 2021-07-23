@@ -8,5 +8,7 @@
     "cset_list",
     "guild_isInit",
     "guild_addBotChannel",
-    "unit_create"
+    "unit_create",
+    "identity_associate",
+    "identity_create"
 ]

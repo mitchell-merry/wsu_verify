@@ -15,7 +15,7 @@ const handleMute = async (message, argv) => {
 
     if(argv.length < 3) return "not_enough_args";
     const user = await message.guild.members.fetch(argv[2]);
-    if(user === undefined) return "sm_inval_user";
+    if(user === undefined) return "inval_user";
 
     const mute_cat = message.guild.channels.cache.get(G.dataValues.guild_mute_cat_id);
     if(mute_cat === undefined) return "sm_inval_mute_cat";
@@ -74,7 +74,7 @@ const handleUnmuteBan = async (message, argv) => {
 
     if(argv.length < 3) return "not_enough_args";
     const user = await message.guild.members.fetch(argv[2]);
-    if(user === undefined) return "sm_inval_user";
+    if(user === undefined) return "inval_user";
 
     const mute_cat = await message.guild.channels.cache.get(G.dataValues.guild_mute_cat_id);
     if(mute_cat === undefined) return "sm_inval_mute_cat";
@@ -109,7 +109,7 @@ const handleStrip = async (message, argv) => {
     
     if(argv.length < 3) return "not_enough_args";
     const user = await message.guild.members.fetch(argv[2]);
-    if(user === undefined) return "sm_inval_user";
+    if(user === undefined) return "inval_user";
 
     await user.roles.cache
         .filter(r => r.name !== "@everyone")

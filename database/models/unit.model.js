@@ -24,7 +24,7 @@ class Unit extends Model {
             }
         },
         {
-            tableName: "units",
+            tableName: "unit",
             sequelize
         });
     }

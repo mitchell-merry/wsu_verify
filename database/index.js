@@ -11,11 +11,13 @@ const sync = async (sequelize) => {
         BotChannel: require('./models/bot_channel.model').init(sequelize),
         CategorySet: require('./models/category_set.model').init(sequelize),
         Category: require('./models/category.model').init(sequelize),
+        Identity: require('./models/identity.model').init(sequelize),
         RoleChannel: require('./models/role_channel.model').init(sequelize),
         RoleMenu: require('./models/role_menu.model').init(sequelize),
         Permission: require('./models/permission.model').init(sequelize),
         Role: require('./models/role.model').init(sequelize),
         Unit: require('./models/unit.model').init(sequelize),
+        User: require('./models/user.model').init(sequelize),
     };
 
     // code i found on stackoverflow to help me debug & write code

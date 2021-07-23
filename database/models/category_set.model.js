@@ -21,7 +21,7 @@ class CategorySet extends Model {
             },
         },
         {
-            tableName: "category_sets",
+            tableName: "category_set",
             sequelize
         });
     }

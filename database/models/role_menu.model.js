@@ -24,7 +24,7 @@ class RoleMenu extends Model {
             }
         },
         {
-            tableName: "role_menus",
+            tableName: "role_menu",
             sequelize
         });
     }

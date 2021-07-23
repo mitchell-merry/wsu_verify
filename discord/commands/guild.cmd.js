@@ -4,6 +4,7 @@
 
 const config = require('../../config');
 const discord_helper = require('../discord_helper');
+const verify = require('../../verify');
 var parseArgs = require('minimist');
 
 const handleInit = async (message, argv) => {
@@ -14,7 +15,6 @@ const handleInit = async (message, argv) => {
     if(exists) return "inval_guild_exists";
 
     let newGuild = { guild_id: message.guild.id };
-    console.log(argv);
     let unhideRole = false;
     if(argv["unhide"]) {
         unhideRole = message.guild.roles.cache.get(argv["unhide"]);
@@ -43,7 +43,10 @@ const handleInit = async (message, argv) => {
         newGuild.guild_mute_role_id = argv["mute_role"];
     }
 
-    Guild.create(newGuild);
+    await Guild.create(newGuild);
+
+    const result = await verify.initialiseGuildUsers(message.guild);
+    if(!result) return "unk_err";
 
     message.channel.send("Succesfully initialised guild.");
     return true;
