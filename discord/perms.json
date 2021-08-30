@@ -10,5 +10,6 @@
     "guild_addBotChannel",
     "unit_create",
     "identity_associate",
-    "identity_create"
+    "identity_create",
+    "verify_addMessage"
 ]

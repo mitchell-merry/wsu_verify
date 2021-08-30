@@ -29,7 +29,7 @@ const handleAssociate = async (message, argv) => {
 };
 
 const handleCreate = async (message, argv) => {
-    const { Permission, User, Identity } = config.mysql.client.models;
+    const { Permission, Identity } = config.mysql.client.models;
     if(!Permission.userHasPermission(message.member, "identity_create")) return "inval_perms";
 
     if(argv.length < 4) return "not_enough_args";

@@ -77,7 +77,7 @@ const handleAddBotChannel = async (message, argv) => {
 
     const id = message.content.split(' ')[2];
     const ch = await message.guild.channels.cache.get(id);
-    if(ch === undefined) return "inval_bot_channel";
+    if(ch === undefined) return "inval_channel";
     const e = await BotChannel.exists(argv["_"][2]);
     if(e) return "inval_bot_channel_exists";
 

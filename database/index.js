@@ -18,6 +18,7 @@ const sync = async (sequelize) => {
         Role: require('./models/role.model').init(sequelize),
         Unit: require('./models/unit.model').init(sequelize),
         User: require('./models/user.model').init(sequelize),
+        VerifyMessage: require('./models/verify_message.model').init(sequelize),
     };
 
     // code i found on stackoverflow to help me debug & write code

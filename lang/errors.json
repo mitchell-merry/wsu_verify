@@ -28,8 +28,11 @@
     "inval_guild": {
         "disc": "This guild has not been initialised."
     },
-    "inval_bot_channel": {
-        "disc": "Invalid bot channel ID."
+    "inval_channel": {
+        "disc": "Invalid channel ID."
+    },
+    "inval_message": {
+        "disc": "Invalid message ID."
     },
     "inval_bot_channel_exists": {
         "disc": "Specified bot channel already exists."
@@ -78,5 +81,8 @@
     },
     "inval_identity_set": {
         "disc": "This user already has an associated ID."
+    },
+    "verify_message_exists": {
+        "disc": "Verify message already in use."
     }
 }

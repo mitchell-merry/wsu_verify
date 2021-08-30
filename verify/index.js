@@ -4,8 +4,10 @@
 
 const config = require('../config');
 const email = require('./email');
+const verify_message_handler = require('./verify_message_handler');
 
 const init = async () => {
+    verify_message_handler.init();
     email.init();
 }
 
@@ -42,8 +44,14 @@ const associateIdentityWithUser = async (user_id, identity_id) => {
     return true;
 }
 
+const initiateVerificationWithUser = async (user) => {
+    
+}
+
 module.exports = {
     init,
     initialiseGuildUsers,
     associateIdentityWithUser,
+    initiateVerificationWithUser,
+    verify_message_handler
 }

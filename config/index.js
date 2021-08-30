@@ -12,7 +12,6 @@ module.exports = {
         prefix: ',',
         activity: 'hi :)',
         token: auth.token,
-        guildList: null,
         adminID: auth.adminID,
         client: null,
         ready: false,

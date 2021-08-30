@@ -41,6 +41,7 @@ class Guild extends Model {
         this.hasMany(models.CategorySet, { foreignKey: 'guild_id' });
         this.hasMany(models.RoleChannel, { foreignKey: 'guild_id' });
         this.hasMany(models.BotChannel, { foreignKey: 'guild_id' });
+        this.hasMany(models.VerifyMessage, { foreignKey: 'guild_id' });
         this.belongsToMany(models.User, { through: 'guild_member', foreignKey: 'guild_id', otherKey: 'user_id' });
     }
 

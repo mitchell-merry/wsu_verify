@@ -14,7 +14,7 @@ const handleAdd = async (message, argv) => {
     if(!exists) return "inval_guild";
     if(argv["_"].length < 4) return "not_enough_args";
 
-    if(Permission.userHasPermission(message.member, "perms")) return "inval_perms";
+    if(!Permission.userHasPermission(message.member, "perms")) return "inval_perms";
 
     const id = message.content.split(' ')[2];
     const role = await message.guild.roles.cache.get(id);

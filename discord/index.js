@@ -11,9 +11,11 @@ const commands = {
     "sm": require("./commands/sm.cmd"),
     "perm": require("./commands/perm.cmd"),
     "identity": require("./commands/identity.cmd"),
+    "verify": require('./commands/verify.cmd'),
 };
 var parseArgs = require('minimist');
 const err = require('../lang/errors.json');
+const verify = require('../verify');
 
 const handleError = async (error, channel) => {
     if(error.cons) console.log(error.cons);
@@ -55,6 +57,10 @@ const message = async (message) => {
 const messageReactionAdd = async (reaction, user) => {
     if(user.bot || !config.discord.ready) return;
     
+    const { RoleMenu, VerifyMessage } = await config.mysql.client.models;
+
+    const V = await VerifyMessage.findByPk(reaction.message.id);
+    if(V && V.dataValues.emote === reaction._emoji.name) verify.verify_message_handler.react(V, reaction, user);
 };
 
 // Event Listener for when reactions are removed

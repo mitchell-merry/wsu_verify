@@ -17,6 +17,8 @@ const app = express();
 const discord = require('./discord');
 const db = require('./database');
 const config = require('./config');
+const Sequelize = require('sequelize');
+const verify = require('./verify');
 
 async function init()
 {
@@ -24,7 +26,6 @@ async function init()
     await client.user.setActivity(config.discord.activity);
     
     // Log all the guilds (servers) and their id's that the bot is located in.
-    config.discord.guildList = client.guilds.cache;
     console.log("Ready in " + client.guilds.cache.size);
     console.log(client.guilds.cache.map(g => `${g.name} [${g.id}]`).join("\n"));
 
@@ -32,6 +33,8 @@ async function init()
 
     const mysql = await db.connect();
     config.mysql.client = mysql;
+
+    await verify.init();
 
     config.discord.ready = true;
     console.log();
