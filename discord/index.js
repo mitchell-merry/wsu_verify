@@ -69,8 +69,20 @@ const messageReactionRemove = async (reaction, user) => {
     
 };
 
+// When we join a guild, initialise it automatically
+const onJoinGuild = async (guild) => {
+    const { Guild } = config.mysql.client.models;
+
+    let newGuild = { guild_id: guild.id }
+    await Guild.create(newGuild);
+    console.log("Initialised " + guild.id);
+
+    // await verify.initialiseGuildUsers(message.guild);
+};
+
 module.exports = {
     message,
     messageReactionAdd,
-    messageReactionRemove
+    messageReactionRemove,
+    onJoinGuild,
 };

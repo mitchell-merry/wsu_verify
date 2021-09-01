@@ -34,5 +34,8 @@ module.exports = {
         client: null,
         force: false,
     },
+    express: {
+        PORT: 3001
+    },
     helper: require('./helper')
 }

@@ -27,24 +27,24 @@ const sync = async (sequelize) => {
         .forEach(model => model.associate(models));
 
 
-        for (let model of Object.keys(models)) {
-            if(models[model].name === 'Sequelize')
-               continue;
-            if(!models[model].name)
-              continue;
+    //     for (let model of Object.keys(models)) {
+    //         if(models[model].name === 'Sequelize')
+    //            continue;
+    //         if(!models[model].name)
+    //           continue;
           
-            console.log("\n\n----------------------------------\n", 
-            models[model].name, 
-            "\n----------------------------------");
+    //         console.log("\n\n----------------------------------\n", 
+    //         models[model].name, 
+    //         "\n----------------------------------");
           
             
-            console.log("\nAssociations");
-            for (let assoc of Object.keys(models[model].associations)) {
-              for (let accessor of Object.keys(models[model].associations[assoc].accessors)) {
-                console.log(models[model].name + '.' + models[model].associations[assoc].accessors[accessor]+'()');
-              }
-            }
-          }
+    //         console.log("\nAssociations");
+    //         for (let assoc of Object.keys(models[model].associations)) {
+    //           for (let accessor of Object.keys(models[model].associations[assoc].accessors)) {
+    //             console.log(models[model].name + '.' + models[model].associations[assoc].accessors[accessor]+'()');
+    //           }
+    //         }
+    //       }
     
     sequelize.sync({force: config.mysql.force});
 }
@@ -66,9 +66,19 @@ const connect = async () => {
     return sequelize;
 }
 
-
+const syncGuilds = async (guilds) => {
+    const { Guild } = config.mysql.client.models;
+    for(let guild of guilds) {
+        const G = await Guild.findByPk(guild[0]);
+        if(!G) {
+            console.log(`Syncing guild ${guild[0]}...`)
+            Guild.create( {guild_id: guild[0] })
+        }
+    }
+}
 
 module.exports = {
     connect,
-    sync
+    sync,
+    syncGuilds,
 };
