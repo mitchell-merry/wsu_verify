@@ -11,7 +11,7 @@ I co-founded the Computing club at Western Sydney University. This club has a la
 ## Backend
 This is essentially the backend of the project. The front end interfaces with this server through a custom API written using Express. That API uses Sequelize (an ORM) to connect to our MySQL database to get information on the server, the users, the units, and other things it may request.
 
-![Screenshot of database diagram](https://i.imgur.com/N0kann6.png)
+![Screenshot of database diagram](https://i.imgur.com/rXvROCV.png)
 
 This diagram was made using draw.io. You can find the models for these tables in [the repo here.](https://github.com/diggitydingdong/wsu_verify/tree/main/database/models) The database is split into two modules, connect via `guild` - roles / units / categories (top section) and users. Essentially, the top section helps us manage the structure of the server by storing the basic information for what's needed, allowing us to make changes by changing this data instead of manually changing it on the server, whereas the second section (users) allows us to store various information on the actual users of the servers. We sometimes get raids and harrassing users, and we use this information to report offending parties to the University.
 
