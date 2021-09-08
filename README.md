@@ -5,6 +5,12 @@ Backend and bot controller for a Discord server manager. Written in Node.js, uti
 - MySQL (Database)
 - Express (lightweight API)
 
+# Highlights
+- [The front-end](https://github.com/diggitydingdong/wacm-app)
+- [Sequelize models](https://github.com/diggitydingdong/wsu_verify/tree/main/database/models)
+- [CLI Interface Definitions](https://github.com/diggitydingdong/wsu_verify/tree/main/discord/commands)
+- [Express API endpoints](https://github.com/diggitydingdong/wsu_verify/tree/main/routes)
+
 # Purpose
 I co-founded the Computing club at Western Sydney University. This club has a large Discord server (online community) with over 700 members and many different things to manage within. Overtime, the amount of time it took to make changes and manage this server got to a point where even the slightest change could take over an hour. Discord has a public facing API that allows people to run user accounts as a bot, allowing for automation and increased customisability. This bot serves the server and manages the members, channels, units, categories, etcetera that pertain to the server. It also has the capability of expanding to all of our university's server, allowing for increase synergy between and sharing a common database.
 
@@ -23,3 +29,6 @@ While there is a [front-end app](https://github.com/diggitydingdong/wacm-app), w
 ![Example of using a command and the result](https://i.imgur.com/7rOjnFn.png)
 
 Above is an example command, `,guild init`, which essentially adds the server and initialises all of it's members automatically.
+
+## API Routes
+Since the app has a front-end, I defined routes for communication at https://github.com/diggitydingdong/wsu_verify/tree/main/routes.
