@@ -9,16 +9,26 @@ app.use(express.json());
 app.use(cors());
 app.options('*', cors());
 
-app.get(prefix + "guild", async (req, res) => {
-    if(config.discord.ready) {
-        const { Guild } = config.mysql.client.models;
-        const o = await Guild.findAll();
-        const response = o.map(g => g.dataValues);
-        res.json(response);
-    }
-});
+const endpoints = {
+    guild: require('./guilds'),
+    botChannel: require('./bot_channel'),
+    categorySet: require('./category_set'),
+    category: require('./category'),
+    identity: require('./identity'),
+    roleChannel: require('./role_channel'),
+    roleMenu: require('./role_menu'),
+    permission: require('./permission'),
+    role: require('./role'),
+    unit: require('./unit'),
+    user: require('./user'),
+    verifyMessage: require('./verify_message'),
+};
 
-// Returns bot information
+for (const [key, value] of Object.entries(endpoints)) {
+    value.initialiseRoutes(app, prefix + key);
+}
+
+// Returns bot information (single endpoint)
 app.get(prefix + "bot", async (req, res) => {
     if(config.discord.ready) {
         res.json({
