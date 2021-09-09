@@ -14,14 +14,14 @@ Backend and bot controller for a Discord server manager. Written in Node.js, uti
 ## Purpose
 I co-founded the Computing club at Western Sydney University. This club has a large Discord server (online community) with over 700 members and many different things to manage within. Overtime, the amount of time it took to make changes and manage this server got to a point where even the slightest change could take over an hour. Discord has a public facing API that allows people to run user accounts as a bot, allowing for automation and increased customisability. This bot serves the server and manages the members, channels, units, categories, etcetera that pertain to the server. It also has the capability of expanding to all of our university's server, allowing for increase synergy between and sharing a common database.
 
-## If I had more time
+## If I had more time / were to do it again
 - TypeScript, not JS, to assist in predicting shapes of APIs and reduce 'undefined is not a property of' errors
 - Explored PostgreSQL and MongoDB to accurately weigh pros / cons
 - Implemented Next.js
 
 # Implementation
 ## Backend
-This is essentially the backend of the project. The front end interfaces with this server through a custom API written using Express. That API uses Sequelize (an ORM) to connect to our MySQL database to get information on the server, the users, the units, and other things it may request.
+This is essentially the backend of the project. The [front-end](https://github.com/diggitydingdong/wacm-app/) interfaces with this server through a custom API written using Express. That API uses Sequelize (an ORM) to connect to our MySQL database to get information on the server, the users, the units, and other things it may request.
 
 ![Screenshot of database diagram](https://i.imgur.com/rXvROCV.png)
 
